@@ -1,6 +1,6 @@
 {
-    "name": "tab-trap",
-    "version": "0.0.1",
+    "name": "@raphpare/tab-trap",
+    "version": "0.0.2",
     "description": "Create accessible focus trap",
     "keywords": [
         "focus trap",
@@ -29,11 +29,10 @@
     "scripts": {
         "build": "rimraf lib && node esbuild.config.js && tsc",
         "watch": "rimraf lib && node esbuild.config.js --watch",
-        "clean": "rimraf node_modules && rimraf lib && rimraf docs"
+        "clean": "rimraf node_modules && rimraf lib"
     },
     "devDependencies": {
         "esbuild": "^0.14.2",
-        "typedoc": "^0.22.10",
         "typescript": "^4.5.2"
     }
 }

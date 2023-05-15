@@ -8,13 +8,13 @@ Create accessible focus trap.
 
 ## Install
 ```
-$ npm i tab-trap --save
+$ npm i @raphpare/tab-trap --save
 ```
 
 or
 
 ```
-$ yarn add tab-trap
+$ yarn add @raphpare/tab-trap
 ```
 
 ## Instantiate
