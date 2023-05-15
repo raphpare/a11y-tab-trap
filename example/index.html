@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabTrap example</title>
+
+    <style>
+        .display-none.display-none {
+            display: none;
+        }
+
+        [role="dialog"] {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, .6);
+        }
+
+        .dialog__content {
+            max-width: 280px;
+            width: 100%;
+            background-color: #fff;
+            padding: 32px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TabTrap example</h1>
+        <nav aria-label="Fake main menu">
+            <ul>
+                <li><a href="#">Link A</a></li>
+                <li><a href="#">Link B</a></li>
+                <li><a href="#">Link C</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <button class="btn-open">Open dialog</button>
+    </main>
+    <footer>
+        <nav aria-label="Fake footer menu">
+            <ul>
+                <li><a href="#">Link A</a></li>
+                <li><a href="#">Link B</a></li>
+                <li><a href="#">Link C</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <article role="dialog" tabindex="-1" class="display-none">
+        <div class="dialog__content">
+            <button  class="btn-close">Close dialog</button>
+
+            <form action="#" method="get">
+                <label for="name">Full Name</label>
+                <input #id="name" type="text" />
+
+                <label for="email">Email</label>
+                <input #id="email" type="email" />
+            </form>
+        </div>
+    </article>
+
+    <script type="module" src="scripts/index.js"></script>
+</body>
+</html>

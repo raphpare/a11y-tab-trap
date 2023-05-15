@@ -1,0 +1,42 @@
+{
+    "name": "tab-trap",
+    "version": "0.0.1",
+    "description": "Create accessible focus trap",
+    "keywords": [
+        "focus trap",
+        "tab trap",
+        "accessibility",
+        "a11y",
+        "modal",
+        "dialog"
+    ],
+    "homepage": "https://raphpare.github.io/tab-trap",
+    "bug": {
+        "url": "https://github.com/raphpare/tab-trap/issues"
+    },
+    "license": "ISC",
+    "author": "Raphaël Paré <raph.pare@outlook.com> (https://github.com/raphpare)",
+    "files": [
+        "lib"
+    ],
+    "main": "lib/tab-trap.js",
+    "module": "lib/tab-trap.esm.js",
+    "types": "lib/tab-trap.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/raphpare/tab-trap.git"
+    },
+    "scripts": {
+        "build": "rimraf lib && node esbuild.config.js && tsc",
+        "watch": "rimraf lib && node esbuild.config.js --watch",
+        "clean": "rimraf node_modules && rimraf lib && rimraf docs"
+    },
+    "devDependencies": {
+        "esbuild": "^0.14.2",
+        "typedoc": "^0.22.10",
+        "typescript": "^4.5.2"
+    },
+    "dependencies": {
+        "require": "^2.4.20"
+    }
+}
