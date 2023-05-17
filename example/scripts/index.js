@@ -1,20 +1,20 @@
-import { TabTrap } from '../../lib/tab-trap.esm.js';
+import { A11yTabTrap } from '../../lib/index.esm.js';
 
 const DISPLAY_NONE_CLASS = 'display-none';
 
 const refBtnOpen = document.querySelector('.btn-open');
 const refDialog = document.querySelector('[role="dialog"]');
 const refBtnClose = document.querySelector('.btn-close');
-const tabTrap = new TabTrap();
+const a11yTabTrap = new A11yTabTrap();
 
 const openDialog = () => {
     refDialog.classList.remove(DISPLAY_NONE_CLASS);
-    tabTrap.set(refDialog);
+    a11yTabTrap.set(refDialog);
 };
 
 const closeDialog = () => {
     refDialog.classList.add(DISPLAY_NONE_CLASS);
-    tabTrap.remove();
+    a11yTabTrap.remove();
 };
 
 

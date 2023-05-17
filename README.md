@@ -38,17 +38,17 @@ $ yarn add a11y-tab-trap
 ### TypeScript
 
 ``` TS
-import { TabTrap } from 'a11y-tab-trap';
+import { A11yTabTrap } from 'a11y-tab-trap';
 
-const tabTrap = new TabTrap();
+const a11yTabTrap = new A11yTabTrap();
 
 const openDialog = () => {
     const refDialog = document.querySelector('[role="dialog"]');
-    tabTrap.set(refDialog);
+    a11yTabTrap.set(refDialog);
 };
 
 const closeDialog = () => {
-    tabTrap.remove();
+    a11yTabTrap.remove();
 };
 
 document.querySelector('.btn-open')
@@ -61,7 +61,7 @@ document.querySelector('.btn-close')
 
 ## Methods
 
-### TabTrap.set(htmlElement, options)
+### A11yTabTrap.set(htmlElement, options)
 Apply a focus trap on the child element of the htmlElement parameter using the options passed in parameter.
 
 **options**
@@ -69,8 +69,8 @@ Apply a focus trap on the child element of the htmlElement parameter using the o
 | -- | -- |
 | initialFocus: `HtmlElement` | Element that will be focused following the execution of the `set()` method |
 
-### TabTrap.remove()
+### A11yTabTrap.remove()
 Apply focus to the last focused element before executing the `set()` method and remove event listeners.
 
-### TabTrap.destroy()
+### A11yTabTrap.destroy()
 Remove event listeners.

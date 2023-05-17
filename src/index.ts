@@ -1,4 +1,4 @@
-export class TabTrap {
+export class A11yTabTrap {
     #rootElement: HTMLElement | null = null;
     #focusableElements: HTMLElement[] = [];
     #lastFocusedElement: HTMLElement | null = null;

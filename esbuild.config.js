@@ -17,7 +17,7 @@ const watchChange = process.argv.slice(2).includes('--watch');
 function build (watchChange) {
     config.forEach(c => {
         esbuild.build({
-            entryPoints: ['./src/tab-trap.ts'],
+            entryPoints: ['./src/index.ts'],
             bundle: true,
             minify: true,
             platform: 'node',
