@@ -10,13 +10,13 @@ Create accessible tab trap.
 
 ### npm
 ```
-$ npm i a11y-tab-trap --save
+npm i a11y-tab-trap --save
 ```
 
 ### Yarn
 
 ```
-$ yarn add a11y-tab-trap
+yarn add a11y-tab-trap
 ```
 
 ## Examples
