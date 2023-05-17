@@ -1,6 +1,6 @@
 {
-    "name": "@raphpare/tab-trap",
-    "version": "0.0.2",
+    "name": "a11y-tab-trap",
+    "version": "0.0.0-beta.21",
     "description": "Create accessible focus trap",
     "keywords": [
         "focus trap",

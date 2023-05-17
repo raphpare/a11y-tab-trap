@@ -1,41 +1,44 @@
-# Tab Trap
-Create accessible focus trap.
+# A11y Tab Trap
+Create accessible tab trap.
 
 ## Getting Started
 1. [Install](#install)
-2. [Instantiate](#instantiate)
+2. [Examples](#examples)
 2. [Methods](#methods)
 
 ## Install
+
+### npm
 ```
-$ npm i @raphpare/tab-trap --save
+$ npm i a11y-tab-trap --save
 ```
 
-or
+### Yarn
 
 ```
-$ yarn add @raphpare/tab-trap
+$ yarn add a11y-tab-trap
 ```
 
-## Instantiate
-``` html
+## Examples
+
+### HTML
+``` HTML
 <button class="btn-open">Open dialog</button>
 
 <article role="dialog" tabindex="-1">
     <button  class="btn-close">Close dialog</button>
 
     <form action="#" method="get">
-        <label for="name">Full Name</label>
-        <input #id="name" type="text" />
-
         <label for="email">Email</label>
         <input #id="email" type="email" />
     </form>
 </article>
 ```
 
-``` ts
-import { TabTrap } from 'tabtrap';
+### TypeScript
+
+``` TS
+import { TabTrap } from 'a11y-tab-trap';
 
 const tabTrap = new TabTrap();
 

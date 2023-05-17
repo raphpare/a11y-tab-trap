@@ -1,4 +1,4 @@
-import { TabTrap } from '../../lib/tabtrap.esm.js';
+import { TabTrap } from '../../lib/tab-trap.esm.js';
 
 const DISPLAY_NONE_CLASS = 'display-none';
 
