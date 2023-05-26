@@ -3,6 +3,7 @@ const focusableElementsSelector = '[tabindex="0"], a[href]:not([tabindex="-1"]),
 export interface A11yTabTrapOptions {
     initialFocus?: HTMLElement;
 }
+
 export class A11yTabTrap {
     #rootElement: HTMLElement | null = null;
     #focusableElements: HTMLElement[] = [];
