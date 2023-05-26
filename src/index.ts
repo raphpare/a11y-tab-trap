@@ -1,3 +1,5 @@
+const focusableElementsSelector = '[tabindex="0"], a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]):not([type="hidden"]), select:not([disabled]):not([tabindex="-1"])';
+
 export class A11yTabTrap {
     #rootElement: HTMLElement | null = null;
     #focusableElements: HTMLElement[] = [];
@@ -15,14 +17,13 @@ export class A11yTabTrap {
         }
     ): void {
         this.#rootElement = element;
-
         this.#lastFocusedElement = document.activeElement as HTMLElement;
 
         this.#setFocusableElements();
 
         if (options?.initialFocus) {
             options.initialFocus.focus();
-        } else {
+        } else if (this.#rootElement) {
             this.#rootElement.focus();
         }
 
@@ -72,10 +73,10 @@ export class A11yTabTrap {
 
     #setFocusableElements(): void {
         if (!this.#rootElement) return;
-        this.#focusableElements = Array.from(
+        this.#focusableElements = (Array.from(
             this.#rootElement.querySelectorAll(
-                '[tabindex="0"], a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]):not([type="hidden"]), select:not([disabled]):not([tabindex="-1"])'
+                focusableElementsSelector
             )
-        ) as HTMLElement[];
+        ) as HTMLElement[]).filter(e => e.offsetParent !== null);
     }
 }
