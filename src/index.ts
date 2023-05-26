@@ -1,5 +1,8 @@
 const focusableElementsSelector = '[tabindex="0"], a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]):not([type="hidden"]), select:not([disabled]):not([tabindex="-1"])';
 
+export interface A11yTabTrapOptions {
+    initialFocus?: HTMLElement;
+}
 export class A11yTabTrap {
     #rootElement: HTMLElement | null = null;
     #focusableElements: HTMLElement[] = [];
@@ -12,10 +15,8 @@ export class A11yTabTrap {
     
     set(
         element: HTMLElement,
-        options?: {
-            initialFocus?: HTMLElement;
-        }
-    ): void {
+        options?: A11yTabTrapOptions
+    ): A11yTabTrap {
         this.#rootElement = element;
         this.#lastFocusedElement = document.activeElement as HTMLElement;
 
@@ -28,20 +29,26 @@ export class A11yTabTrap {
         }
 
         document.addEventListener('keydown', this.#keydownEvent);
+
+        return this;
     }
 
-    remove(): void {
+    remove(): A11yTabTrap {
         if (this.#lastFocusedElement) 
             this.#lastFocusedElement.focus();
         
         document.removeEventListener('keydown', this.#keydownEvent);
+
+        return this;
     }
 
-    destroy() {
+    destroy(): A11yTabTrap {
         document.removeEventListener('keydown', this.#keydownEvent);
+
+        return this;
     }
 
-    #onKeydown = (event: KeyboardEvent): void => {
+    #onKeydown(event: KeyboardEvent): void {
         if (!this.#rootElement) return;
 
         this.#setFocusableElements();
@@ -80,3 +87,8 @@ export class A11yTabTrap {
         ) as HTMLElement[]).filter(e => e.offsetParent !== null);
     }
 }
+
+export const createTabTrap = (
+    element: HTMLElement, 
+    options?: A11yTabTrapOptions
+): A11yTabTrap => new A11yTabTrap().set(element, options);

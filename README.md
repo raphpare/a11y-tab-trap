@@ -36,7 +36,30 @@ yarn add a11y-tab-trap
 ```
 
 ### TypeScript
+#### CreateTapTrap() Fonction
+``` TS
+import { createTabTrap } from 'a11y-tab-trap';
 
+let a11yTabTrap;
+
+const openDialog = () => {
+    const refDialog = document.querySelector('[role="dialog"]');
+    a11yTabTrap = createTabTrap(refDialog);
+};
+
+const closeDialog = () => {
+    a11yTabTrap?.remove();
+};
+
+document.querySelector('.btn-open')
+    .addEventListener('click', openDialog);
+
+document.querySelector('.btn-close')
+    .addEventListener('click', closeDialog);
+
+```
+
+#### A11yTabTrap Class
 ``` TS
 import { A11yTabTrap } from 'a11y-tab-trap';
 
