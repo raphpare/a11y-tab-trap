@@ -2,12 +2,14 @@ const focusableElementsSelector = '[tabindex="0"], a[href]:not([tabindex="-1"]),
 
 export interface A11yTabTrapOptions {
     initialFocus?: HTMLElement;
+    finalFocus?: HTMLElement | null;
 }
 
 export class A11yTabTrap {
     #rootElement: HTMLElement | null = null;
     #focusableElements: HTMLElement[] = [];
-    #lastFocusedElement: HTMLElement | null = null;
+    #options: A11yTabTrapOptions = {};
+
     #keydownEvent: () => void;
 
     constructor() {
@@ -18,15 +20,18 @@ export class A11yTabTrap {
         element: HTMLElement,
         options?: A11yTabTrapOptions
     ): A11yTabTrap {
+        this.#options = { 
+            initialFocus: element,
+            finalFocus: document.activeElement as HTMLElement || null,
+            ...options
+        };
+
         this.#rootElement = element;
-        this.#lastFocusedElement = document.activeElement as HTMLElement;
 
         this.#setFocusableElements();
 
-        if (options?.initialFocus) {
-            options.initialFocus.focus();
-        } else if (this.#rootElement) {
-            this.#rootElement.focus();
+        if (this.#options?.initialFocus) {
+            this.#options.initialFocus.focus();
         }
 
         document.addEventListener('keydown', this.#keydownEvent);
@@ -35,8 +40,8 @@ export class A11yTabTrap {
     }
 
     remove(): A11yTabTrap {
-        if (this.#lastFocusedElement) 
-            this.#lastFocusedElement.focus();
+        if (this.#options.finalFocus) 
+            this.#options.finalFocus.focus();
         
         document.removeEventListener('keydown', this.#keydownEvent);
 

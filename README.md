@@ -88,9 +88,11 @@ document.querySelector('.btn-close')
 Apply a focus trap on the child element of the htmlElement parameter using the options passed in parameter.
 
 **options**
-| Attribute | Description |
-| -- | -- |
-| initialFocus: `HtmlElement` | Element that will be focused following the execution of the `set()` method |
+| Attribute | Default value | Description |
+| -- | -- | -- |
+| initialFocus?: `HtmlElement` | rootElement | Element that will be focused following the execution of the `set()` method |
+| finalFocus?: `HtmlElement \| null` | `document.activeElement` | Element that will be focused following the execution of the `remove()` method |
+
 
 ### A11yTabTrap.remove()
 Apply focus to the last focused element before executing the `set()` method and remove event listeners.
