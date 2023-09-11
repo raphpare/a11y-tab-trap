@@ -81,6 +81,9 @@ document.querySelector('.btn-close')
     .addEventListener('click', closeDialog);
 
 ```
+## Getter
+### A11yTabTrap.active
+Returns `true` when the tab-trap is active (before calling the `set()` method). Returns `false` when the tab-trap is inactive (after calling the `remove()` method).
 
 ## Methods
 
@@ -90,12 +93,12 @@ Apply a focus trap on the child element of the htmlElement parameter using the o
 **options**
 | Attribute | Default value | Description |
 | -- | -- | -- |
-| initialFocus?: `HtmlElement` | rootElement | Element that will be focused following the execution of the `set()` method |
-| finalFocus?: `HtmlElement \| null` | `document.activeElement` | Element that will be focused following the execution of the `remove()` method |
+| initialFocus?: `HtmlElement` | rootElement | Element that will be focused after calling the `set()` method. |
+| finalFocus?: `HtmlElement \| null` | `document.activeElement` | Element that will be focused after calling the `remove()` method. |
 
 
 ### A11yTabTrap.remove()
-Apply focus to the last focused element before executing the `set()` method and remove event listeners.
+Apply focus to the last focused element before calling the `set()` method and remove event listeners.
 
 ### A11yTabTrap.destroy()
 Remove event listeners.

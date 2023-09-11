@@ -1,4 +1,4 @@
-const focusableElementsSelector = '[tabindex="0"], a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]):not([type="hidden"]), select:not([disabled]):not([tabindex="-1"])';
+const FOCUSABLE_ELEMENTS_SELECTOR = '[tabindex="0"], a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]):not([type="hidden"]), select:not([disabled]):not([tabindex="-1"])';
 
 export interface A11yTabTrapOptions {
     initialFocus?: HTMLElement;
@@ -9,11 +9,16 @@ export class A11yTabTrap {
     #rootElement: HTMLElement | null = null;
     #focusableElements: HTMLElement[] = [];
     #options: A11yTabTrapOptions = {};
+    #active: boolean = false;
 
     #keydownEvent: () => void;
 
     constructor() {
         this.#keydownEvent = this.#onKeydown.bind(this);
+    }
+
+    get active(): boolean {
+        return this.#active;
     }
     
     set(
@@ -26,9 +31,11 @@ export class A11yTabTrap {
             ...options
         };
 
+        this.#active = true;
         this.#rootElement = element;
 
         this.#setFocusableElements();
+
 
         if (this.#options?.initialFocus) {
             this.#options.initialFocus.focus();
@@ -41,15 +48,17 @@ export class A11yTabTrap {
 
     remove(): A11yTabTrap {
         if (this.#options.finalFocus) 
-            this.#options.finalFocus.focus();
-        
+        this.#options.finalFocus.focus();
+    
         document.removeEventListener('keydown', this.#keydownEvent);
+        this.#active = false;
 
         return this;
     }
 
     destroy(): A11yTabTrap {
         document.removeEventListener('keydown', this.#keydownEvent);
+        this.#active = false;
 
         return this;
     }
@@ -88,7 +97,7 @@ export class A11yTabTrap {
         if (!this.#rootElement) return;
         this.#focusableElements = (Array.from(
             this.#rootElement.querySelectorAll(
-                focusableElementsSelector
+                FOCUSABLE_ELEMENTS_SELECTOR
             )
         ) as HTMLElement[]).filter(e => e.offsetParent !== null);
     }

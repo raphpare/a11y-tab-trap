@@ -1,6 +1,6 @@
 {
     "name": "a11y-tab-trap",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Create accessible focus trap",
     "keywords": [
         "focus trap",
